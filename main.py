@@ -1,5 +1,9 @@
 from fastapi import FastAPI
 
+from config.db import SQL_Base, engine
+
+SQL_Base.metadata.create_all(engine)
+
 app = FastAPI()
 
 
