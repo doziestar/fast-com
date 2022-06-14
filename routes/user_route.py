@@ -2,7 +2,7 @@ from fastapi import APIRouter
 from models.user_model import User
 from views.user_view import UserCrud
 
-router = APIRouter()
+router = APIRouter(tags=["User"])
 
 
 @router.get("/")
