@@ -14,6 +14,7 @@ class UserSchema(BaseSchema):
     password = Column(String, nullable=False, default="")
 
     products = relationship("ProductSchema", back_populates="owner")
+    orders = relationship("OrderSchema", back_populates="user")
 
     @property
     async def fullname(self):
