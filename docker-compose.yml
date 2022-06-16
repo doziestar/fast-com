@@ -1,0 +1,38 @@
+version: '3'
+services:
+  postgres:
+    image: postgres
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+    restart: always
+    depends_on:
+      - redis
+    # networks:
+    #   - backend
+  redis:
+    image: redis
+    ports:
+      - '6379:6379'
+    restart: always
+    # networks:
+    #   - backend
+  python:
+    image: python
+    depends_on:
+      - postgres
+    # command:
+    # - python
+    # - -m venv /venv
+    # - pip install -r requirements.txt
+    # - uvicorn main:app --reload
+    volumes:
+      - ./data/python:/venv
+    restart: always
+    # networks:
+    #   - backend
